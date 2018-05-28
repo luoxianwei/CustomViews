@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TagsViewGroup">
+        <attr name="marginX" format="dimension"/>
+        <attr name="marginY" format="dimension"/>
+
+        <attr name="tagsTextPaddingX" format="dimension"/>
+        <attr name="tagsTextPaddingY" format="dimension"/>
+        <attr name="tagsTextSize" format="dimension"/>
+
+        <attr name="tagsTextColor" format="reference"/>
+        <attr name="tagsTextBackground" format="reference"/>
+
+    </declare-styleable>
+</resources>
