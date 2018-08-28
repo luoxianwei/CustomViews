@@ -1,5 +1,6 @@
 package com.yeuyt.customviews;
 
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -26,7 +27,11 @@ public class ViewPagerFragmentAdapter extends FragmentStatePagerAdapter {
         this.fragments = fragments;
         this.titles = titles;
     }
-
+    @Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return titles.get(position);
+    }
     public void addFragment(CharSequence title, Fragment fragment) {
         titles.add(title);
         fragments.add(fragment);

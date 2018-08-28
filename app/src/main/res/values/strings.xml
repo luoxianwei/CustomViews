@@ -1,4 +1,3 @@
 <resources>
     <string name="app_name">CustomViews</string>
-    <item name="tag_position" type="id"/>
 </resources>

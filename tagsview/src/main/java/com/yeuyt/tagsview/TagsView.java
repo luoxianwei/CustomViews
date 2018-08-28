@@ -1,4 +1,4 @@
-package com.yeuyt.customviews.viewsSimple;
+package com.yeuyt.tagsview;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -8,12 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.yeuyt.customviews.R;
-
 /**
  * 标签列表控件
  */
-public class TagsViewGroup extends ViewGroup implements View.OnClickListener {
+public class TagsView extends ViewGroup implements View.OnClickListener {
 
     private int marginX;//标签水平间距
     private int marginY;//标签竖直间距
@@ -34,17 +32,18 @@ public class TagsViewGroup extends ViewGroup implements View.OnClickListener {
     //是否可以选中子view，默认不可选中
     private boolean selected = false;
 
-    public TagsViewGroup(Context context) {
+
+    public TagsView(Context context) {
         super(context);
         init(context, null);
     }
 
-    public TagsViewGroup(Context context, AttributeSet attrs) {
+    public TagsView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
     }
 
-    public TagsViewGroup(Context context, AttributeSet attrs, int defStyleAttr) {
+    public TagsView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs);
     }
@@ -63,6 +62,7 @@ public class TagsViewGroup extends ViewGroup implements View.OnClickListener {
             tagsTextBackground = array.getResourceId(R.styleable.TagsViewGroup_tagsTextBackground, 0);
             array.recycle();
         }
+
     }
 
     @Override
@@ -70,8 +70,8 @@ public class TagsViewGroup extends ViewGroup implements View.OnClickListener {
         // 获得它的父容器为它设置的测量模式和大小
         int measureWidth = MeasureSpec.getSize(widthMeasureSpec);
         int measureHeight = MeasureSpec.getSize(heightMeasureSpec);
-        int modeWidth = MeasureSpec.getMode(widthMeasureSpec);
-        int modeHeight = MeasureSpec.getMode(heightMeasureSpec);
+        //int modeWidth = MeasureSpec.getMode(widthMeasureSpec);
+        //   int modeHeight = MeasureSpec.getMode(heightMeasureSpec);
 
         int count = getChildCount();
 
@@ -81,6 +81,7 @@ public class TagsViewGroup extends ViewGroup implements View.OnClickListener {
         int leftLocation = 0;//当前子view的左边位置
         for(int i=0; i<count; i++) {
             View child = getChildAt(i);
+
             // 测量每一个child的宽和高
             measureChild(child, widthMeasureSpec, heightMeasureSpec);
             int childWidth = child.getMeasuredWidth();
@@ -108,8 +109,12 @@ public class TagsViewGroup extends ViewGroup implements View.OnClickListener {
                 maxWidth += getPaddingRight()-marginX;
             }
         }
-        setMeasuredDimension((modeWidth == MeasureSpec.EXACTLY) ? measureWidth : maxWidth,
-                (modeHeight == MeasureSpec.EXACTLY) ? measureHeight : sumHeight);
+        measureWidth = resolveSize(maxWidth, measureWidth);
+        measureHeight = resolveSize(sumHeight, measureHeight);
+        setMeasuredDimension(measureWidth, measureHeight);
+
+//        setMeasuredDimension((modeWidth == MeasureSpec.EXACTLY) ? measureWidth : maxWidth,
+//                (modeHeight == MeasureSpec.EXACTLY) ? measureHeight : sumHeight);
     }
 
     @Override

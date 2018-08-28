@@ -7,20 +7,20 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.yeuyt.customviews.R;
-import com.yeuyt.customviews.viewsSimple.TagsViewGroup;
+import com.yeuyt.tagsview.TagsView;
+
 
 public class Fragment_1 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_tags_viewgroup, container, false);
-        TagsViewGroup group = view.findViewById(R.id.tag_view_group);
+        TagsView group = view.findViewById(R.id.tag_view_group);
         String[] ss = {"java", "android", "玄学", "数据结构", "调试", "python", "dart", "C++"};
         group.setTags(ss, true);
-        group.setOnChildClickListener(new TagsViewGroup.OnChildClickListener() {
+        group.setOnChildClickListener(new TagsView.OnChildClickListener() {
             @Override
             public void onChildClick(View view, int position) {
 
